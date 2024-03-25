@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "39e0be2e-100f-4356-a704-15379cae99a9",
+		"name": "Airwallex - Issuing (Business)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12794106"
+	},
+	"item": [
+		{
+			"name": "Gets",
+			"item": [
+				{
+					"name": "Get all cardholders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-on-behalf-of",
+								"value": "{{connected_account_id}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-api-version",
+								"value": "2024-03-31",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/issuing/cardholders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"issuing",
+								"cardholders"
+							],
+							"query": [
+								{
+									"key": "cardholder_status",
+									"value": "",
+									"description": "Cardholder status to filter by - one of PENDING, READY, DISABLED",
+									"disabled": true
+								},
+								{
+									"key": "page_num",
+									"value": "",
+									"description": "Page number, starts from 0.",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "",
+									"description": "Number of results per page",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all cards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-on-behalf-of",
+								"value": "{{connected_account_id}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-api-version",
+								"value": "2024-03-31",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/issuing/cards",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"issuing",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "card_status",
+									"value": "",
+									"description": "Current card status\nOne of PENDING, FAILED, INACTIVE, ACTIVE, LOST, STOLEN, CLOSED, BLOCKED",
+									"disabled": true
+								},
+								{
+									"key": "cardholder_id",
+									"value": "",
+									"description": "The id of the cardholder for the card, if it is an employee card.",
+									"disabled": true
+								},
+								{
+									"key": "from_created_at",
+									"value": "",
+									"description": "Created_from_date in ISO8601 format (inclusive)",
+									"disabled": true
+								},
+								{
+									"key": "nick_name",
+									"value": "",
+									"description": "Will be used to return cards whose nickname exactly matches the value of this field.",
+									"disabled": true
+								},
+								{
+									"key": "page_num",
+									"value": "",
+									"description": "Page number, starts from 0",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "",
+									"description": "Number of results per page",
+									"disabled": true
+								},
+								{
+									"key": "to_created_at",
+									"value": "",
+									"description": "Created_to_date in ISO8601 format (inclusive)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-on-behalf-of",
+								"value": "{{connected_account_id}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/issuing/transactions?x-api-version=2024-03-31",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"issuing",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "billing_currency",
+									"value": "",
+									"description": "Currency in which transaction was billed. (3-letter ISO-4217 code)",
+									"disabled": true
+								},
+								{
+									"key": "card_id",
+									"value": "",
+									"description": "Unique Identifier for card",
+									"disabled": true
+								},
+								{
+									"key": "from_created_at",
+									"value": "2022-01-25T14:20:23.375+0800",
+									"description": "start of Transaction Date in ISO8601 format (inclusive)",
+									"disabled": true
+								},
+								{
+									"key": "page_num",
+									"value": "",
+									"description": "Page number, starts from 0.",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "200",
+									"description": "Number of results per page",
+									"disabled": true
+								},
+								{
+									"key": "retrieval_ref",
+									"value": "",
+									"description": "Retrieval reference number",
+									"disabled": true
+								},
+								{
+									"key": "to_created_at",
+									"value": "2022-01-26",
+									"description": "end of Transaction Date in ISO8601 format (inclusive)",
+									"disabled": true
+								},
+								{
+									"key": "transaction_type",
+									"value": "",
+									"description": "Transaction Type - one of AUTHORIZATION, CLEARING, REFUND, REVERSAL, ORIGINAL_CREDIT\nAUTHORIZATION - Funds reserved due to card usage\nCLEARING - Deducting purchase amount from account balance\nREFUND - Refunding the purchase amount back to account balance\nREVERSAL - Reversing an authorization\nORIGINAL_CREDIT - Merchant initiated credit transactions",
+									"disabled": true
+								},
+								{
+									"key": "x-api-version",
+									"value": "2024-03-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current balances",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-on-behalf-of",
+								"value": "{{connected_account_id}}",
+								"description": "The connected account's ID.",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "{{url}}/api/v1/balances/current"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1. Create a cardholder",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"cardholder_id\", JSON.parse(responseBody).cardholder_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-on-behalf-of",
+						"value": "{{connected_account_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-version",
+						"value": "2024-03-31",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": {\n        \"city\": \"San Francisco\",\n        \"country\": \"US\",\n        \"state\": \"CA\",\n        \"line1\": \"2 Embarcadero\",\n        \"postcode\": \"25000\"\n    },\n    \"email\": \"test+{{$guid}}@airwallex.com\",\n    \"individual\": {\n        \"date_of_birth\": \"1982-11-02\",\n        \"express_consent_obtained\": \"yes\",\n        \"identification\": {\n            \"country\": \"US\",\n            \"expiry_date\": \"2030-08-28\",\n            \"number\": \"001238243\",\n            \"type\": \"ID_CARD\"\n        },\n        \"name\": {\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\"\n        }\n    },\n    \"mobile_number\": \"123456789\",\n    \"type\": \"DELEGATE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/v1/issuing/cardholders/create"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Create a business card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"card_id\", JSON.parse(responseBody).card_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-on-behalf-of",
+						"value": "{{connected_account_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-version",
+						"value": "2024-03-31",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"authorization_controls\": {\n        \"allowed_transaction_count\": \"SINGLE\",\n        \"transaction_limits\": {\n            \"currency\": \"USD\",\n            \"limits\": [\n                {\n                    \"amount\": 1000,\n                    \"interval\": \"ALL_TIME\"\n                }\n            ]\n        }\n    },\n    \"program\": {\n        \"purpose\": \"COMMERCIAL\"\n    },\n    \"is_personalized\": false,\n    \"form_factor\": \"VIRTUAL\",\n    \"issue_to\": \"ORGANISATION\",\n    \"cardholder_id\": \"791c52b3-b910-4d45-808e-d29095dc63bd\",\n    \"request_id\": \"{{$guid}}\",\n    \"created_by\": \"Postman Test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/v1/issuing/cards/create"
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create a transaction for the provided card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"issuing_transaction_id\", JSON.parse(responseBody).transaction_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-version",
+						"value": "2024-03-31",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"auth_code\": \"12345\",\n    \"card_id\": \"e463ffae-c774-41b8-9022-294d7c706bc6\",\n    \"merchant_info\": \"Airwallex Cards Simulation\",\n    \"merchant_category_code\": \"7531\",\n    \"transaction_amount\": 10.10,\n    \"transaction_currency\": \"USD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/v1/simulation/issuing/create"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Capture the transaction with the provided id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-version",
+						"value": "2024-03-31",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"merchant_info\": \"The merchant's info\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/simulation/issuing/:transaction_id/capture",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"simulation",
+						"issuing",
+						":transaction_id",
+						"capture"
+					],
+					"variable": [
+						{
+							"key": "transaction_id",
+							"value": "{{issuing_transaction_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{bearer_token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/************************************************",
+					" * This collection pre-request script runs before the request one.",
+					" ***********************************************/",
+					"",
+					"// Global variables and functions",
+					"BASE_URL = pm.variables.get(\"url\");",
+					"",
+					"UTILITY = {",
+					"    getRequestHeader: function () {",
+					"        if (pm.request.headers.find((x) => x.key === \"x-on-behalf-of\") === undefined) {",
+					"            throw Error(\"Missing 'x-on-behalf-of' in the HTTP Header.\")",
+					"        }",
+					"        else if (pm.request.headers.find((x) => x.key === \"x-on-behalf-of\" && x.disabled === true)) {",
+					"            return { \"Authorization\": \"Bearer \" + pm.environment.get(\"bearer_token\") };",
+					"        }",
+					"        else {",
+					"            let connectedAccountId = pm.request.headers.find((x) => x.key === \"x-on-behalf-of\").value;",
+					"            connectedAccountId = connectedAccountId === \"{{connected_account_id}}\" ? pm.environment.get(\"connected_account_id\") : connectedAccountId;",
+					"",
+					"            return {",
+					"                \"Authorization\": \"Bearer \" + pm.environment.get(\"bearer_token\"),",
+					"                \"x-on-behalf-of\": connectedAccountId",
+					"            };",
+					"        }",
+					"    }",
+					"};",
+					"",
+					"// Initialize environment variables. ",
+					"if (typeof pm.environment.get(\"connected_account_id\") === 'undefined')",
+					"    pm.environment.set(\"connected_account_id\", \"\");",
+					"",
+					"// Test the bearer_token expiry.",
+					"if (\"/\" + pm.request.url.path.join(\"/\") === \"/api/v1/authentication/login\")",
+					"    return;",
+					"",
+					"let loginUrl = BASE_URL + \"/api/v1/authentication/login\";",
+					"console.info(`bearer_token invalid, calling ${loginUrl} to refresh...`);",
+					"",
+					"// Obtain access token, before each request.",
+					"let clientId = pm.variables.get(\"clientId\");",
+					"let apiKey = pm.variables.get(\"apiKey\");",
+					"",
+					"if (clientId === \"\" || apiKey === \"\") {",
+					"    throw new Error(\"Please set the values for the variables 'clientId' or 'apiKey'.\");",
+					"}",
+					"",
+					"pm.sendRequest({",
+					"    url: loginUrl,",
+					"    method: \"POST\",",
+					"    header: {",
+					"        \"x-client-id\": clientId,",
+					"        \"x-api-key\": apiKey",
+					"    }",
+					"}, function (err, res) {",
+					"    pm.environment.set(\"bearer_token_expires_at\", res.json().expires_at);",
+					"    pm.environment.set(\"bearer_token\", res.json().token);",
+					"",
+					"    // pm.sendRequest() is asynchronous, so only execute the function after the bearer_token is set.",
+					"    executeWithValidBearerToken(BASE_URL);",
+					"});",
+					"",
+					"// Encode query parameters, e.g. 2021-12-21T18:50:00+08:00 -> 2021-12-21T18%3A50%3A00%2B08%3A00.",
+					"pm.request.url.query.filter((x) => x.disabled === undefined).forEach((x) => x.value = encodeURIComponent(x.value));",
+					"",
+					"function executeWithValidBearerToken(baseUrl) {",
+					"    if (pm.environment.get(\"connected_account_id\") === \"\") {",
+					"        if (pm.request.headers.find((x) => x.key === \"x-on-behalf-of\" && (x.disabled === undefined || x.disabled === false))) {",
+					"            request_url = baseUrl + \"/api/v1/accounts\";",
+					"            console.warn(`HTTP Header 'x-on-behalf-of' is on, but the environment variable 'connected_account_id' is not set, calling ${request_url} to default it.`);",
+					"",
+					"            pm.sendRequest({",
+					"                url: request_url,",
+					"                method: \"GET\",",
+					"                header: { \"Authorization\": \"Bearer \" + pm.environment.get(\"bearer_token\") }",
+					"            }, function (err, res) {",
+					"                active_account = res.json().items.find((x) => x.status === \"ACTIVE\");",
+					"                if (active_account != undefined) {",
+					"                    console.info(`Defaulting 'connected_account_id' to the first ACTIVE account ${active_account.id}`);",
+					"                    pm.environment.set(\"connected_account_id\", active_account.id);",
+					"                }",
+					"                else {",
+					"                    throw new Error(\"Environment variable 'connected_account_id' is not set, and cannot set a default, as there is no ACTIVE account returned.\");",
+					"                }",
+					"            });",
+					"        }",
+					"    }",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"if (pm.request.method === \"POST\") {",
+					"    pm.test(\"Successful POST request\", () => {",
+					"        pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+					"    });",
+					"}",
+					"else {",
+					"    pm.test(\"Status code is 200\", () => {",
+					"        pm.response.to.have.status(200);",
+					"    });",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "clientId",
+			"value": ""
+		},
+		{
+			"key": "apiKey",
+			"value": ""
+		},
+		{
+			"key": "url",
+			"value": "https://api-demo.airwallex.com"
+		},
+		{
+			"key": "file_url",
+			"value": "https://files-demo.airwallex.com"
+		}
+	]
+}
